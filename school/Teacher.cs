@@ -2,9 +2,9 @@
 {
     public class Teacher : Staff
     {
-        private string Subject { get; set; }
+        public string Subject { get; set; }
 
-        Teacher(string name, string email, int empCode, string subject) : base(name, email, empCode)
+        public Teacher(string name, string email, int empCode, string subject) : base(name, email, empCode, "teacher")
         {
             this.Subject = subject;
         }

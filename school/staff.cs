@@ -4,15 +4,17 @@ namespace school
 {
     public class Staff
     {
-        private string Name { get; set; }
-        private string Email { get; set; }
-        private int EmpCode { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int EmpCode { get; set; }
+        public string Type { get; set; }
 
-        public Staff(String name, String email, int empCode)
+        public Staff(String name, String email, int empCode, string type)
         {
             this.Name = name;
             this.Email = email;
             this.EmpCode = empCode;
+            this.Type = type;
         }
     }
 }

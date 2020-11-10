@@ -2,9 +2,9 @@
 {
     public class Support : Staff
     {
-        string Department;
+        public string Department { get; set; }
 
-        public Support(string name, string email, int empCode, string department) : base(name, email, empCode)
+        public Support(string name, string email, int empCode, string department) : base(name, email, empCode, "support")
         {
             this.Department = department;
         }
