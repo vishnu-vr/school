@@ -8,10 +8,6 @@ namespace consoleapp
     {
         static void Main(string[] args)
         {
-            //Teacher teacher = new Teacher("vishnu","v@school.com",1,"maths");
-            //Administartor admin = new Administartor("vishnu", "v@school.com", 1, "role");
-            //Support support = new Support("vishnu", "v@school.com", 1, "accounts");
-            //Console.WriteLine(support.Name);
 
             ManageStaff manager = new ManageStaff();
 
@@ -69,7 +65,7 @@ namespace consoleapp
                 //view all
                 else if (option == 2)
                 {
-                    List<dynamic> Staffs = manager.GetAll();//new List<Staff>();
+                    List<dynamic> Staffs = manager.GetAll();
                     for (int i=0; i<Staffs.Count; i++)
                     {
                         PrintDetails(Staffs[i]);
@@ -126,27 +122,10 @@ namespace consoleapp
                 Console.WriteLine("1. No");
                 Console.WriteLine("2. Yes");
                 option = int.Parse(Console.ReadLine());
-                if (option == 1) Environment.Exit(0);//break;
+                if (option == 1) Environment.Exit(0);
                 else Console.Clear();
 
             }
-            //manager.AddStaff(1, "vishnu", "v@school.com", 1, "maths");
-            //manager.AddStaff(2, "ramesh", "v@school.com", 2, "role");
-            ////List<Staff> Staffs = manager.GetAll();//new List<Staff>();
-            ////Console.WriteLine(Staffs[0].Name);
-
-            //try
-            //{
-            //    Staff staff = manager.GetOne(1);
-            //    Console.WriteLine(staff.Name);
-            //}
-            //catch (Exception)
-            //{
-            //    Console.WriteLine("staff not found");
-
-            //}
-            
-            
 
         }
 

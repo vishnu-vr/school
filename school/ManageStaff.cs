@@ -70,7 +70,6 @@ namespace school
                 }
             }
             return false;
-            //throw new StaffNotFoundException();
         }
     }
 }
