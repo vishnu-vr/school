@@ -4,7 +4,7 @@
     {
         public string Subject { get; set; }
 
-        public Teacher(string name, string email, int empCode, string subject) : base(name, email, empCode, Type.teacher)
+        public Teacher(string name, string email, int empCode, string subject) : base(name, email, empCode, StaffType.teacher)
         {
             this.Subject = subject;
         }

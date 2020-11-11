@@ -1,6 +1,6 @@
 ﻿namespace school
 {
-    public enum Type
+    public enum StaffType
     {
         teacher,
         support,

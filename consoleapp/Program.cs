@@ -45,21 +45,21 @@ namespace consoleapp
                         Console.WriteLine();
                         Console.Write("Enter Subject : ");
                         string subject = Console.ReadLine();
-                        manager.AddStaff(school.Type.teacher, name, email, id, subject);
+                        manager.AddStaff(school.StaffType.teacher, name, email, id, subject);
                     }
                     else if (type == 2)
                     {
                         Console.WriteLine();
                         Console.Write("Enter Role : ");
                         string role = Console.ReadLine();
-                        manager.AddStaff(school.Type.administrator, name, email, id, role);
+                        manager.AddStaff(school.StaffType.administrator, name, email, id, role);
                     }
                     else if (type == 3)
                     {
                         Console.WriteLine();
                         Console.Write("Enter Department : ");
                         string dept = Console.ReadLine();
-                        manager.AddStaff(school.Type.support, name, email, id, dept);
+                        manager.AddStaff(school.StaffType.support, name, email, id, dept);
                     }
                 }
                 //view all
@@ -102,9 +102,9 @@ namespace consoleapp
                         Console.WriteLine("Enter new email : ");
                         string newEmail = Console.ReadLine();
 
-                        if (staff.StaffType == school.Type.teacher) Console.WriteLine("Enter new subject : ");
-                        else if (staff.StaffType == school.Type.support) Console.WriteLine("Enter new deparment : ");
-                        else if (staff.StaffType == school.Type.administrator) Console.WriteLine("Enter new role : ");
+                        if (staff.Type == school.StaffType.teacher) Console.WriteLine("Enter new subject : ");
+                        else if (staff.Type == school.StaffType.support) Console.WriteLine("Enter new deparment : ");
+                        else if (staff.Type == school.StaffType.administrator) Console.WriteLine("Enter new role : ");
                         string extra = Console.ReadLine();
 
                         if (manager.Update(empCode, newName, newEmail, extra)) Console.WriteLine("Updated Successfully");
@@ -142,16 +142,16 @@ namespace consoleapp
             Console.WriteLine(staff.Name);
             Console.WriteLine(staff.Email);
             Console.WriteLine(staff.EmpCode);
-            Console.WriteLine(staff.StaffType);
-            if (staff.StaffType == school.Type.teacher)
+            Console.WriteLine(staff.Type);
+            if (staff.Type == school.StaffType.teacher)
             {
                 Console.WriteLine(staff.Subject);
             }
-            else if (staff.StaffType == school.Type.support)
+            else if (staff.Type == school.StaffType.support)
             {
                 Console.WriteLine(staff.Department);
             }
-            if (staff.StaffType == school.Type.administrator)
+            if (staff.Type == school.StaffType.administrator)
             {
                 Console.WriteLine(staff.Role);
             }

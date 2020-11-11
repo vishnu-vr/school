@@ -5,7 +5,7 @@ namespace school
     public interface IManageStaff
     {
         //add new staff
-        public void AddStaff(Type type, string name, string email, int empCode, string extra);
+        public void AddStaff(StaffType type, string name, string email, int empCode, string extra);
 
         //get all details
         public List<dynamic> GetAll();
