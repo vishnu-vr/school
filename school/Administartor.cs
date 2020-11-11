@@ -4,7 +4,7 @@
     {
         public string Role { get; set; }
 
-        public Administartor(string name, string email, int empCode, string role) : base(name, email, empCode, "administrator")
+        public Administartor(string name, string email, int empCode, string role) : base(name, email, empCode, Type.administrator)
         {
             this.Role = role;
         }

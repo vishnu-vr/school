@@ -6,20 +6,20 @@ namespace school
     {
         private List<dynamic> Staffs = new List<dynamic>();
 
-        public void AddStaff(int type, string name, string email, int empCode, string extra)
+        public void AddStaff(Type type, string name, string email, int empCode, string extra)
         {
             //teacher
-            if (type == 1)
+            if (type == Type.teacher)
             {
                 Staffs.Add(new Teacher(name,email,empCode, extra));
             }
             //admin
-            else if (type == 2)
+            else if (type == Type.administrator)
             {
                 Staffs.Add(new Administartor(name, email, empCode, extra));
             }
             //support
-            else if (type == 3)
+            else if (type == Type.support)
             {
                 Staffs.Add(new Support(name, email, empCode, extra));
             }
@@ -48,9 +48,9 @@ namespace school
                 {
                     Staffs[i].Name = name;
                     Staffs[i].Email = email;
-                    if (Staffs[i].Type == "teacher") Staffs[i].Subject = extra;
-                    else if (Staffs[i].Type == "administrator") Staffs[i].Role = extra;
-                    if (Staffs[i].Type == "support") Staffs[i].Department = extra;
+                    if (Staffs[i].StaffType == Type.teacher) Staffs[i].Subject = extra;
+                    else if (Staffs[i].StaffType == Type.administrator) Staffs[i].Role = extra;
+                    if (Staffs[i].StaffType == Type.support) Staffs[i].Department = extra;
 
                     return true;
                 }
