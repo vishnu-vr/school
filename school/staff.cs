@@ -2,13 +2,6 @@
 
 namespace school
 {
-    public enum Type
-    {
-        teacher,
-        support,
-        administrator
-    };
-
     public class Staff
     {
         public string Name { get; set; }

@@ -2,7 +2,7 @@
 
 namespace school
 {
-    public class ManageStaff
+    public class ManageStaff : IManageStaff
     {
         private List<dynamic> Staffs = new List<dynamic>();
 
