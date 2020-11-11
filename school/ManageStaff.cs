@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace school
@@ -31,21 +32,23 @@ namespace school
 
         public bool Update(int empCode, string name, string email, string extra)
         {
-            for (int i = 0; i < Staffs.Count; i++)
+            try
             {
-                if (Staffs[i].EmpCode == empCode)
-                {
-                    Staffs[i].Name = name;
-                    Staffs[i].Email = email;
-                    if (Staffs[i].StaffType == Type.teacher) Staffs[i].Subject = extra;
-                    else if (Staffs[i].StaffType == Type.administrator) Staffs[i].Role = extra;
-                    if (Staffs[i].StaffType == Type.support) Staffs[i].Department = extra;
+                dynamic staff = Staffs.Single(staff => staff.EmpCode == empCode);
 
-                    return true;
-                }
+                staff.Name = name;
+                staff.Email = email;
+                if (staff.StaffType == Type.teacher) staff.Subject = extra;
+                else if (staff.StaffType == Type.administrator) staff.Role = extra;
+                if (staff.StaffType == Type.support) staff.Department = extra;
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
 
-            return false;
         }
 
         public bool Delete(int empCode)

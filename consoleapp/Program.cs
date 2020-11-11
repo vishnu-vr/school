@@ -93,19 +93,27 @@ namespace consoleapp
                     Console.WriteLine("Enter Emp Code : ");
                     int empCode = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Enter new name : ");
-                    string newName = Console.ReadLine();
-                    Console.WriteLine("Enter new email : ");
-                    string newEmail = Console.ReadLine();
+                    try
+                    {
+                        dynamic staff = manager.GetOne(empCode);
 
-                    dynamic staff = manager.GetOne(empCode);
-                    if (staff.StaffType == school.Type.teacher) Console.WriteLine("Enter new subject : ");
-                    else if (staff.StaffType == school.Type.support) Console.WriteLine("Enter new deparment : ");
-                    else if (staff.StaffType == school.Type.administrator) Console.WriteLine("Enter new role : ");
-                    string extra = Console.ReadLine();
+                        Console.WriteLine("Enter new name : ");
+                        string newName = Console.ReadLine();
+                        Console.WriteLine("Enter new email : ");
+                        string newEmail = Console.ReadLine();
 
-                    if (manager.Update(empCode, newName, newEmail, extra)) Console.WriteLine("Updated Successfully");
-                    else Console.WriteLine("Failed");
+                        if (staff.StaffType == school.Type.teacher) Console.WriteLine("Enter new subject : ");
+                        else if (staff.StaffType == school.Type.support) Console.WriteLine("Enter new deparment : ");
+                        else if (staff.StaffType == school.Type.administrator) Console.WriteLine("Enter new role : ");
+                        string extra = Console.ReadLine();
+
+                        if (manager.Update(empCode, newName, newEmail, extra)) Console.WriteLine("Updated Successfully");
+                        else Console.WriteLine("Failed");
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Staff with given code doesn't exists");
+                    }
 
                 }
                 //delete
