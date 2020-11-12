@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace school
 {
     public class ManageStaff : IManageStaff
     {
-        private List<dynamic> Staffs = new List<dynamic>();
+        private List<dynamic> Staffs;// = new List<dynamic>();
+
+        StorageManager storageManager = new StorageManager();
+
+        public ManageStaff()
+        {
+            this.Staffs = RetreiveAllXml();
+        }
 
         public void AddStaff(StaffType type, string name, string email, int empCode, string extra)
         {
@@ -55,6 +63,61 @@ namespace school
         {
             Staffs = Staffs.Where(staff => staff.EmpCode != empCode).ToList();
             return true;
+        }
+
+        public void SaveAsXml()
+        {
+            string folderName = "";
+
+            for (int i=0; i<Staffs.Count; i++)
+            {
+                if (Staffs[i].Type == StaffType.administrator) folderName = "Administrator";
+                else if (Staffs[i].Type == StaffType.teacher) folderName = "Teacher";
+                else if (Staffs[i].Type == StaffType.support) folderName = "Support";
+
+                storageManager.StoreAsXML(Staffs[i], Staffs[i].EmpCode.ToString(), folderName);
+            }
+        }
+
+        public List<dynamic> RetreiveAllXml()
+        {
+
+            //Console.WriteLine("in retriving function");
+
+            List<dynamic> objs = new List<dynamic>();
+
+            string filePath = "/Users/vishnu/desktop/XMLStore/";
+
+            //string[] files = { };
+
+            List<string> files = new List<string>();
+
+            files.AddRange(Directory.GetFiles(filePath + "Teacher"));
+            files.AddRange(Directory.GetFiles(filePath + "Administrator"));
+            files.AddRange(Directory.GetFiles(filePath + "Support"));
+
+            //Console.WriteLine("before loop");
+
+            //string[] t = Directory.GetFiles(filePath + "Teacher");
+
+            //Console.WriteLine(t[0]);
+
+            for (int i=0; i<files.Count; i++)
+            {
+                //Console.WriteLine(files[i]);
+
+                //check whether the file extension is xml
+                string[] fileNameAndExtension = files[i].Split(".");
+                if (fileNameAndExtension[1] != "xml") continue;
+
+                dynamic obj = storageManager.RetreiveXML(files[i]);
+
+                objs.Add(obj);
+            }
+
+
+
+            return objs;
         }
     }
 }

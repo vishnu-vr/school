@@ -9,6 +9,8 @@ namespace school
         public int EmpCode { get; set; }
         public StaffType Type { get; set; }
 
+        public Staff() { }
+
         public Staff(String name, String email, int empCode, StaffType type)
         {
             this.Name = name;

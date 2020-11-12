@@ -38,6 +38,7 @@ namespace consoleapp
                 Console.WriteLine("3. View Specific Staff Detail");
                 Console.WriteLine("4. Update Details");
                 Console.WriteLine("5. Delete Staff");
+                Console.WriteLine("6. exit");
                 Console.WriteLine();
 
                 int option = int.Parse(Console.ReadLine());
@@ -57,15 +58,32 @@ namespace consoleapp
                 //delete
                 else if (option == 5) DeleteMethod(manager);
 
+                else SaveAndExit(manager);
+
                 Console.WriteLine();
                 Console.WriteLine("Go again ?");
                 Console.WriteLine("1. No");
                 Console.WriteLine("2. Yes");
                 option = int.Parse(Console.ReadLine());
-                if (option == 1) Environment.Exit(0);
+                if (option == 1)
+                {
+                    SaveAndExit(manager);
+                }
                 else Console.Clear();
 
             }
+        }
+
+
+        public static void SaveAndExit(IManageStaff manager)
+        {
+            //saving all objects as xml
+            manager.SaveAsXml();
+
+            Console.Write("Saving Data...");
+
+            //killing the program
+            Environment.Exit(0);
         }
 
         public static void AddStaffMethod(IManageStaff manager)
@@ -181,7 +199,7 @@ namespace consoleapp
             {
                 Console.WriteLine(staff.Department);
             }
-            if (staff.Type == school.StaffType.administrator)
+            else if (staff.Type == school.StaffType.administrator)
             {
                 Console.WriteLine(staff.Role);
             }

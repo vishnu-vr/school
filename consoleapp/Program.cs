@@ -1,4 +1,8 @@
-﻿namespace consoleapp
+﻿using System.Collections.Generic;
+using school;
+using System;
+
+namespace consoleapp
 {
     class Program
     {
