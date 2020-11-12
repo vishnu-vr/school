@@ -8,16 +8,11 @@ using System.Collections.Generic;
 
 namespace school
 {
-    public class XMLStorageManager : InMemoryManageStaff, ISerialize
+    public class XMLStorageManager : ISerialize
     {
 
         private readonly string xmlFilePath = "/Users/vishnu/desktop/XMLStore/persistence.xml";
         readonly Type[] types = new Type[] { typeof(Teacher), typeof(Administartor), typeof(Support) };
-
-        public XMLStorageManager()
-        {
-            base.Staffs.AddRange(this.Deserialize());
-        }
 
         public dynamic Deserialize()
         {
@@ -32,7 +27,7 @@ namespace school
             return obj;
         }
 
-        public void Serialize()
+        public void Serialize(List<dynamic> staffs)
         {
             if (File.Exists(this.xmlFilePath)) File.Delete(this.xmlFilePath);
 
@@ -40,7 +35,7 @@ namespace school
 
             TextWriter txtWriter = new StreamWriter(this.xmlFilePath);
 
-            xs.Serialize(txtWriter, base.Staffs);
+            xs.Serialize(txtWriter, staffs);
 
             txtWriter.Close();
         }

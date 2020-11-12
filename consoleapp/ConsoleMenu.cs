@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using school;
+//using school.Helper;
 using school.Interface;
 
 namespace consoleapp
@@ -31,7 +32,7 @@ namespace consoleapp
         {
             //ISerialize storageManager = new XMLStorageManager();
 
-            dynamic manager = new XMLStorageManager();//GetManager();
+            IManageStaff manager = GetManager();//new XMLManageStaff();//GetManager();
 
             //manager.Serialize();
 
@@ -80,10 +81,10 @@ namespace consoleapp
         }
 
 
-        public static void SaveAndExit(dynamic manager)
+        public static void SaveAndExit(IManageStaff manager)
         {
             //saving all objects as xml
-            manager.Serialize();
+            //manager.Serialize();
 
             Console.Write("Saving Data...");
 
@@ -91,7 +92,7 @@ namespace consoleapp
             Environment.Exit(0);
         }
 
-        public static void AddStaffMethod(dynamic manager)
+        public static void AddStaffMethod(IManageStaff manager)
         {
             Console.Write("Name : ");
             string name = Console.ReadLine();
@@ -130,7 +131,7 @@ namespace consoleapp
             }
         }
 
-        public static void ViewAllMethod(dynamic manager)
+        public static void ViewAllMethod(IManageStaff manager)
         {
             List<dynamic> Staffs = manager.GetAll();
             for (int i = 0; i < Staffs.Count; i++)
@@ -139,7 +140,7 @@ namespace consoleapp
             }
         }
 
-        public static void ViewSpecificMethod(dynamic manager)
+        public static void ViewSpecificMethod(IManageStaff manager)
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());
@@ -154,7 +155,7 @@ namespace consoleapp
             }
         }
 
-        public static void UpdateMethod(dynamic manager)
+        public static void UpdateMethod(IManageStaff manager)
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());
@@ -182,7 +183,7 @@ namespace consoleapp
             }
         }
 
-        public static void DeleteMethod(dynamic manager)
+        public static void DeleteMethod(IManageStaff manager)
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());
