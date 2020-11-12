@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace school
 {
-    public class XMLStorageManager : ManageStaff, ISerialize
+    public class XMLStorageManager : InMemoryManageStaff, ISerialize
     {
 
         private readonly string xmlFilePath = "/Users/vishnu/desktop/XMLStore/persistence.xml";

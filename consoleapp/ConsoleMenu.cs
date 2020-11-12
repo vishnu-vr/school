@@ -33,7 +33,7 @@ namespace consoleapp
 
             IManageStaff manager = new XMLStorageManager();//GetManager();
 
-            //manager.Ser
+            //manager.Serialize();
 
             while (true)
             {

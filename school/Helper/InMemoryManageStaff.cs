@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace school
 {
-    public class ManageStaff : IManageStaff
+    public class InMemoryManageStaff : IManageStaff
     {
         public List<dynamic> Staffs = new List<dynamic>();
 
