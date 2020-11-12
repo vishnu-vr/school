@@ -19,10 +19,5 @@ namespace school
         //delete
         public bool Delete(int empCode);
 
-        //save as xml
-        public void SaveAsXml();
-
-        //retrieve xml
-        public List<dynamic> RetreiveAllXml();
     }
 }

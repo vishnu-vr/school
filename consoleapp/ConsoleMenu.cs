@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using school;
+using school.Interface;
 
 namespace consoleapp
 {
@@ -28,7 +29,11 @@ namespace consoleapp
 
         public static void ShowConsoleMenu()
         {
-            IManageStaff manager = GetManager();
+            //ISerialize storageManager = new XMLStorageManager();
+
+            IManageStaff manager = new XMLStorageManager();//GetManager();
+
+            //manager.Ser
 
             while (true)
             {
@@ -78,7 +83,7 @@ namespace consoleapp
         public static void SaveAndExit(IManageStaff manager)
         {
             //saving all objects as xml
-            manager.SaveAsXml();
+            //manager.Serialize();
 
             Console.Write("Saving Data...");
 
