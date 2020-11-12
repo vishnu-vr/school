@@ -61,7 +61,20 @@ namespace school
 
         public bool Delete(int empCode)
         {
-            Staffs = Staffs.Where(staff => staff.EmpCode != empCode).ToList();
+            //Staffs = Staffs.Where(staff => staff.EmpCode != empCode).ToList();
+
+            dynamic staff = Staffs.Single(staff => staff.EmpCode == empCode);
+
+            string folderName = null;
+
+            if (staff.Type == StaffType.administrator) folderName = "Administrator";
+            else if (staff.Type == StaffType.teacher) folderName = "Teacher";
+            else if (staff.Type == StaffType.support) folderName = "Support";
+
+            storageManager.DeleteXML(folderName, staff.EmpCode.ToString());
+
+            Staffs.Remove(staff);
+            
             return true;
         }
 

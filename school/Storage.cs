@@ -62,5 +62,17 @@ namespace school
 
             return obj;
         }
+
+        public void DeleteXML(string folderName, string fileName)
+        {
+            if (File.Exists(Path.Combine(this.filePath + folderName, fileName + ".xml")))
+            {
+                // If file found, delete it
+                string exactPath = this.filePath + folderName + "/" + fileName + ".xml";
+                //Console.WriteLine(exactPath);
+                File.Delete(exactPath);
+                Console.WriteLine("File deleted.");
+            }
+        }
     }
 }
