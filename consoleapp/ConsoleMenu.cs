@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using school;
-//using school.Helper;
-using school.Interface;
 
 namespace consoleapp
 {
@@ -30,11 +28,7 @@ namespace consoleapp
 
         public static void ShowConsoleMenu()
         {
-            //ISerialize storageManager = new XMLStorageManager();
-
-            IManageStaff manager = GetManager();//new XMLManageStaff();//GetManager();
-
-            //manager.Serialize();
+            IManageStaff manager = GetManager();
 
             while (true)
             {
@@ -64,7 +58,7 @@ namespace consoleapp
                 //delete
                 else if (option == 5) DeleteMethod(manager);
 
-                else SaveAndExit(manager);
+                else SaveAndExit();
 
                 Console.WriteLine();
                 Console.WriteLine("Go again ?");
@@ -73,7 +67,7 @@ namespace consoleapp
                 option = int.Parse(Console.ReadLine());
                 if (option == 1)
                 {
-                    SaveAndExit(manager);
+                    SaveAndExit();
                 }
                 else Console.Clear();
 
@@ -81,7 +75,7 @@ namespace consoleapp
         }
 
 
-        public static void SaveAndExit(IManageStaff manager)
+        public static void SaveAndExit()
         {
             //saving all objects as xml
             //manager.Serialize();

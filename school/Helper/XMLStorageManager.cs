@@ -1,8 +1,6 @@
 ﻿using System.Xml.Serialization;
 using System.IO;
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using school.Interface;
 using System.Collections.Generic;
 

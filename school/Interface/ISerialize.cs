@@ -5,7 +5,7 @@ namespace school.Interface
 {
     public interface ISerialize
     {
-        void Serialize(List<dynamic> staff);
+        void Serialize(List<dynamic> staffs);
 
         dynamic Deserialize();
     }
