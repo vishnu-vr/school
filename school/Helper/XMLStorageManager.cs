@@ -16,22 +16,23 @@ namespace school
 
         public XMLStorageManager()
         {
-            //Deserialzing existing data, ie if any
-            if (File.Exists(this.xmlFilePath)) { 
-
-                XmlSerializer xs = new XmlSerializer(typeof(List<dynamic>), this.types);
-
-                TextReader reader = new StreamReader(this.xmlFilePath);
-                dynamic obj = xs.Deserialize(reader);
-                reader.Close();
-
-                //return obj;
-
-                base.Staffs.AddRange(obj);
-            }
+            base.Staffs.AddRange(this.Deserialize());
         }
 
-        void ISerialize.Serialize()
+        public dynamic Deserialize()
+        {
+            if (!File.Exists(this.xmlFilePath)) return new List<dynamic>();
+
+            XmlSerializer xs = new XmlSerializer(typeof(List<dynamic>), this.types);
+
+            TextReader reader = new StreamReader(this.xmlFilePath);
+            dynamic obj = xs.Deserialize(reader);
+            reader.Close();
+
+            return obj;
+        }
+
+        public void Serialize()
         {
             if (File.Exists(this.xmlFilePath)) File.Delete(this.xmlFilePath);
 
@@ -43,20 +44,6 @@ namespace school
 
             txtWriter.Close();
         }
-
-        //dynamic ISerialize.Deserialize()
-        //{
-        //    if (!File.Exists(this.xmlFilePath)) return new List<dynamic>();
-
-        //    XmlSerializer xs = new XmlSerializer(typeof(List<dynamic>), this.types);
-
-        //    TextReader reader = new StreamReader(this.xmlFilePath);
-        //    dynamic obj = xs.Deserialize(reader);
-        //    reader.Close();
-
-        //    return obj;
-        //}
-
 
 
         //private readonly string xmlFilePath = "/Users/vishnu/desktop/XMLStore/";

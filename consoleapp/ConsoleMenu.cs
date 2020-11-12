@@ -31,7 +31,7 @@ namespace consoleapp
         {
             //ISerialize storageManager = new XMLStorageManager();
 
-            IManageStaff manager = new XMLStorageManager();//GetManager();
+            dynamic manager = new XMLStorageManager();//GetManager();
 
             //manager.Serialize();
 
@@ -80,10 +80,10 @@ namespace consoleapp
         }
 
 
-        public static void SaveAndExit(IManageStaff manager)
+        public static void SaveAndExit(dynamic manager)
         {
             //saving all objects as xml
-            //manager.Serialize();
+            manager.Serialize();
 
             Console.Write("Saving Data...");
 
@@ -91,7 +91,7 @@ namespace consoleapp
             Environment.Exit(0);
         }
 
-        public static void AddStaffMethod(IManageStaff manager)
+        public static void AddStaffMethod(dynamic manager)
         {
             Console.Write("Name : ");
             string name = Console.ReadLine();
@@ -130,7 +130,7 @@ namespace consoleapp
             }
         }
 
-        public static void ViewAllMethod(IManageStaff manager)
+        public static void ViewAllMethod(dynamic manager)
         {
             List<dynamic> Staffs = manager.GetAll();
             for (int i = 0; i < Staffs.Count; i++)
@@ -139,7 +139,7 @@ namespace consoleapp
             }
         }
 
-        public static void ViewSpecificMethod(IManageStaff manager)
+        public static void ViewSpecificMethod(dynamic manager)
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());
@@ -154,7 +154,7 @@ namespace consoleapp
             }
         }
 
-        public static void UpdateMethod(IManageStaff manager)
+        public static void UpdateMethod(dynamic manager)
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());
@@ -182,7 +182,7 @@ namespace consoleapp
             }
         }
 
-        public static void DeleteMethod(IManageStaff manager)
+        public static void DeleteMethod(dynamic manager)
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());

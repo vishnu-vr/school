@@ -7,6 +7,6 @@ namespace school.Interface
     {
         void Serialize();
 
-        //dynamic Deserialize();
+        dynamic Deserialize();
     }
 }
