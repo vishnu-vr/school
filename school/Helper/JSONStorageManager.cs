@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using school.Interface;
 
@@ -7,7 +8,18 @@ namespace school
 {
     public class JSONStorageManager : ISerialize
     {
-        private readonly string jsonFilePath = "/Users/vishnu/desktop/JSONStore/persistence.json";
+        private readonly string jsonFilePath;
+
+        public JSONStorageManager()
+        {
+            //get and build configuration file
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+
+            //fetch file path
+            this.jsonFilePath = config["JSONFilePath"];
+        }
 
         public dynamic Deserialize()
         {
