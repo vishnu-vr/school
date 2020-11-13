@@ -23,9 +23,13 @@ namespace school
 
         public dynamic Deserialize()
         {
+            if (!File.Exists(this.jsonFilePath)) return new List<dynamic>();
+
             StreamReader streamReader = new StreamReader(this.jsonFilePath);
 
             List<dynamic> jsonObjects = JsonConvert.DeserializeObject<List<dynamic>>(streamReader.ReadToEnd());
+
+            streamReader.Close();
 
             List<dynamic> staffs = new List<dynamic>();
 
@@ -50,13 +54,13 @@ namespace school
 
         public void Serialize(List<dynamic> staffs)
         {
-            JsonSerializer jsonSerializer = new JsonSerializer();
+            if (File.Exists(this.jsonFilePath)) File.Delete(this.jsonFilePath);
+
             StreamWriter sw = new StreamWriter(this.jsonFilePath);
-            JsonWriter jsonWriter = new JsonTextWriter(sw);
 
-            jsonSerializer.Serialize(jsonWriter, staffs);
+            string jsonString = JsonConvert.SerializeObject(staffs);
 
-            jsonWriter.Close();
+            sw.Write(jsonString);
             sw.Close();
         }
     }

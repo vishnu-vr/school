@@ -58,32 +58,17 @@ namespace consoleapp
                 //delete
                 else if (option == 5) DeleteMethod(manager);
 
-                else SaveAndExit();
+                else Environment.Exit(0);
 
                 Console.WriteLine();
                 Console.WriteLine("Go again ?");
                 Console.WriteLine("1. No");
                 Console.WriteLine("2. Yes");
                 option = int.Parse(Console.ReadLine());
-                if (option == 1)
-                {
-                    SaveAndExit();
-                }
+                if (option == 1) Environment.Exit(0);
                 else Console.Clear();
 
             }
-        }
-
-
-        public static void SaveAndExit()
-        {
-            //saving all objects as xml
-            //manager.Serialize();
-
-            Console.Write("Saving Data...");
-
-            //killing the program
-            Environment.Exit(0);
         }
 
         public static void AddStaffMethod(IManageStaff manager)

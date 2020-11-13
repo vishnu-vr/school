@@ -1,9 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "school", "school\school.csproj", "{32EF4CB1-88B6-4A81-B72D-3FE22905193A}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "school", "school\school.csproj", "{32EF4CB1-88B6-4A81-B72D-3FE22905193A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consoleapp", "consoleapp\consoleapp.csproj", "{9DC9F411-8B22-4525-952D-D3329B264ACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "consoleapp", "consoleapp\consoleapp.csproj", "{9DC9F411-8B22-4525-952D-D3329B264ACD}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "School_Database", "School_Database\School_Database.sqlproj", "{048B0002-942C-4551-A271-6EE1F2E17657}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +22,17 @@ Global
 		{9DC9F411-8B22-4525-952D-D3329B264ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DC9F411-8B22-4525-952D-D3329B264ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DC9F411-8B22-4525-952D-D3329B264ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048B0002-942C-4551-A271-6EE1F2E17657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048B0002-942C-4551-A271-6EE1F2E17657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048B0002-942C-4551-A271-6EE1F2E17657}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{048B0002-942C-4551-A271-6EE1F2E17657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048B0002-942C-4551-A271-6EE1F2E17657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048B0002-942C-4551-A271-6EE1F2E17657}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C9B0941-EA45-49D6-A868-D22AD044C115}
 	EndGlobalSection
 EndGlobal

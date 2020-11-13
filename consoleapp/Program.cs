@@ -1,4 +1,6 @@
-﻿namespace consoleapp
+﻿using System.IO;
+
+namespace consoleapp
 {
     class Program
     {
