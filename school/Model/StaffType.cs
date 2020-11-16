@@ -2,8 +2,8 @@
 {
     public enum StaffType
     {
-        teacher,
-        support,
-        administrator
+        teacher  = 1,
+        support = 2,
+        administrator = 3
     };
 }

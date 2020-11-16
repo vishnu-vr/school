@@ -15,7 +15,7 @@ namespace school
 
         public void AddStaff(StaffType type, string name, string email, int empCode, string extra)
         {
-            //getting the entire info from xml
+            //getting the entire info from json
             var staffs = (List<dynamic>)this.storageManager.Deserialize();
 
             //teacher
@@ -27,7 +27,7 @@ namespace school
             //support
             else if (type == StaffType.support) staffs.Add(new Support(name, email, empCode, extra));
 
-            //saving it back to xml
+            //saving it back to json
             this.storageManager.Serialize(staffs);
         }
 
