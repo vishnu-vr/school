@@ -1,12 +1,12 @@
 ﻿namespace school
 {
-    public class Administartor : Staff
+    public class Administrator : Staff
     {
         public string Role { get; set; }
 
-        public Administartor() { }
+        public Administrator() { }
 
-        public Administartor(string name, string email, int empCode, string role) : base(name, email, empCode, StaffType.administrator)
+        public Administrator(string name, string email, int empCode, string role) : base(name, email, empCode, StaffType.administrator)
         {
             this.Role = role;
         }

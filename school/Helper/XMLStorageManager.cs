@@ -10,7 +10,7 @@ namespace school
     public class XMLStorageManager : ISerialize
     {
         private readonly string xmlFilePath;
-        readonly Type[] types = new Type[] { typeof(Teacher), typeof(Administartor), typeof(Support) };
+        readonly Type[] types = new Type[] { typeof(Teacher), typeof(Administrator), typeof(Support) };
 
         public XMLStorageManager()
         {

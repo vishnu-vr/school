@@ -38,7 +38,8 @@ namespace consoleapp
                 Console.WriteLine("3. View Specific Staff Detail");
                 Console.WriteLine("4. Update Details");
                 Console.WriteLine("5. Delete Staff");
-                Console.WriteLine("6. exit");
+                Console.WriteLine("6. Bulk Add Staff");
+                Console.WriteLine("7. exit");
                 Console.WriteLine();
 
                 int option = int.Parse(Console.ReadLine());
@@ -58,6 +59,9 @@ namespace consoleapp
                 //delete
                 else if (option == 5) DeleteMethod(manager);
 
+                //bulk add
+                else if (option == 6) BulkAddStaffMethod(manager);
+
                 else Environment.Exit(0);
 
                 Console.WriteLine();
@@ -69,6 +73,62 @@ namespace consoleapp
                 else Console.Clear();
 
             }
+        }
+
+        public static void BulkAddStaffMethod(dynamic manager)
+        {
+            Console.Write("Enter the number of bulk insertion : ");
+            int count = int.Parse(Console.ReadLine());
+
+            List<dynamic> Staffs = new List<dynamic>();
+
+            string name = null;
+            string email = null;
+            int id = 0;
+            string subject = null;
+            string role = null;
+            string dept = null;
+
+            for (int i=0; i<count; i++) 
+            {
+                Console.Write("Name : ");
+                name = Console.ReadLine();
+                Console.Write("Email : ");
+                email = Console.ReadLine();
+                Console.Write("emp id : ");
+                id = int.Parse(Console.ReadLine());
+
+                Console.WriteLine();
+                Console.WriteLine("Staff Type : ");
+                Console.WriteLine("1. Teacher");
+                Console.WriteLine("2. Administrator");
+                Console.WriteLine("3. Support");
+                int type = int.Parse(Console.ReadLine());
+
+                if (type == 1)
+                {
+                    Console.WriteLine();
+                    Console.Write("Enter Subject : ");
+                    subject = Console.ReadLine();
+                    Staffs.Add(new Teacher(name, email, id, subject));
+                }
+                else if (type == 2)
+                {
+                    Console.WriteLine();
+                    Console.Write("Enter Role : ");
+                    role = Console.ReadLine();
+                    Staffs.Add(new Administrator(name, email, id, role));
+                }
+                else if (type == 3)
+                {
+                    Console.WriteLine();
+                    Console.Write("Enter Department : ");
+                    dept = Console.ReadLine();
+                    Staffs.Add(new Support(name, email, id, dept));
+                }
+            }
+
+            manager.Bulk_AddStaff(Staffs);
         }
 
         public static void AddStaffMethod(IManageStaff manager)

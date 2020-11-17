@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace school
 {
-    class DBManageStaff : IManageStaff
+    public class DBManageStaff : IManageStaff
     {
         private readonly string connectionString;
 
@@ -188,10 +188,42 @@ namespace school
             }
             else if (int.Parse(dr["Type"].ToString()) == 3)
             {
-                staff = new Administartor(dr["Name"].ToString(), dr["Email"].ToString(), int.Parse(dr["EmpCode"].ToString()), dr["Role"].ToString());
+                staff = new Administrator(dr["Name"].ToString(), dr["Email"].ToString(), int.Parse(dr["EmpCode"].ToString()), dr["Role"].ToString());
             }
 
             return staff;
+        }
+
+        public void Bulk_AddStaff(List<dynamic> staffs)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[5] { new DataColumn("EmpCode", typeof(int)),
+                new DataColumn("Name", typeof(string)),
+                new DataColumn("Email",typeof(string)),
+                new DataColumn("Type",typeof(int)),
+                new DataColumn("Extra",typeof(string))
+            });
+            foreach (dynamic staff in staffs)
+            {
+                string extra = null;
+                if (staff.Type == StaffType.teacher) extra = staff.Subject;
+                else if (staff.Type == StaffType.support) extra = staff.Department;
+                else if (staff.Type == StaffType.administrator) extra = staff.Role;
+                dt.Rows.Add(staff.EmpCode, staff.Name, staff.Email, staff.Type, extra);
+            }
+           
+            using (SqlConnection con = new SqlConnection(this.connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Proc_BulkAddStaff"))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@Staffs", dt);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
         }
     }
 }

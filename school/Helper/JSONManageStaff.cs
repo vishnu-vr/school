@@ -22,7 +22,7 @@ namespace school
             if (type == StaffType.teacher) staffs.Add(new Teacher(name, email, empCode, extra));
 
             //admin
-            else if (type == StaffType.administrator) staffs.Add(new Administartor(name, email, empCode, extra));
+            else if (type == StaffType.administrator) staffs.Add(new Administrator(name, email, empCode, extra));
 
             //support
             else if (type == StaffType.support) staffs.Add(new Support(name, email, empCode, extra));

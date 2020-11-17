@@ -45,7 +45,7 @@ namespace school
                 }
                 else if (obj.Type == 2)
                 {
-                    staffs.Add(new Administartor(obj.Name.ToString(), obj.Email.ToString(), int.Parse(obj.EmpCode.ToString()), obj.Role.ToString()));
+                    staffs.Add(new Administrator(obj.Name.ToString(), obj.Email.ToString(), int.Parse(obj.EmpCode.ToString()), obj.Role.ToString()));
                 }
             }
 
