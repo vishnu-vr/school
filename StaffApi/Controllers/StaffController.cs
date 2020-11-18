@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using school;
+using Newtonsoft.Json.Linq;
+using StaffApi.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,30 +35,40 @@ namespace StaffApi.Controllers
             else return NotFound();
         }
 
-        [HttpGet("{id:int}")]
-        public ActionResult Get(int id)
+        [HttpGet("{empcode:int}")]
+        public ActionResult Get(int empCode)
         {
-            dynamic staff = db.GetOne(id);
+            dynamic staff = db.GetOne(empCode);
             if (staff == null) return NotFound();
             else return Ok(staff);
         }
 
         // POST api/<StaffController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post([FromBody] StaffAddObject staff)
         {
-        }
+            db.AddStaff(staff.Type, staff.Name, staff.Email, staff.EmpCode, staff.Extra);
+            return Created("Staff Added", new Staff(staff.Name, staff.Email, staff.EmpCode, staff.Type));
+        }   
 
         // PUT api/<StaffController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{empcode:int}")]
+        public ActionResult Put(int empCode, [FromBody] StaffUpdateObject staff)
         {
+            dynamic st = db.GetOne(empCode);
+            if (st == null) return NotFound();
+
+            return Ok(db.Update(empCode, staff.Name, staff.Email, staff.Extra));
         }
 
         // DELETE api/<StaffController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{empcode}")]
+        public ActionResult Delete(int empCode)
         {
+            dynamic st = db.GetOne(empCode);
+            if (st == null) return NotFound();
+
+            return Ok(db.Delete(empCode));
         }
     }
 }
