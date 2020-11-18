@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using school;
-using Newtonsoft.Json.Linq;
 using StaffApi.Models;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StaffApi.Controllers
 {
@@ -22,15 +17,14 @@ namespace StaffApi.Controllers
              db = new DBManageStaff();
         }
 
-        // GET api/<StaffController>/teaching
-        //[HttpGet("{type}")] 
+        [HttpGet()]
         public ActionResult Get(string type)
         {
-            List<dynamic> ret = db.GetAll();
+            List<dynamic> staffs = db.GetAll();
 
-            if (type == "teacher") return Ok(ret.Where(staff => staff.Type == StaffType.teacher));
-            else if (type == "administrator") return Ok(ret.Where(staff => staff.Type == StaffType.administrator));
-            else if (type == "support") return Ok(ret.Where(staff => staff.Type == StaffType.support));
+            if (type == "teacher") return Ok(staffs.Where(staff => staff.Type == StaffType.teacher));
+            else if (type == "administrator") return Ok(staffs.Where(staff => staff.Type == StaffType.administrator));
+            else if (type == "support") return Ok(staffs.Where(staff => staff.Type == StaffType.support));
             else if (type == null) return Ok(db.GetAll());
             else return NotFound();
         }
@@ -43,7 +37,6 @@ namespace StaffApi.Controllers
             else return Ok(staff);
         }
 
-        // POST api/<StaffController>
         [HttpPost]
         public ActionResult Post([FromBody] StaffAddObject staff)
         {
@@ -51,7 +44,6 @@ namespace StaffApi.Controllers
             return Created("Staff Added", new Staff(staff.Name, staff.Email, staff.EmpCode, staff.Type));
         }   
 
-        // PUT api/<StaffController>/5
         [HttpPut("{empcode:int}")]
         public ActionResult Put(int empCode, [FromBody] StaffUpdateObject staff)
         {
@@ -61,7 +53,6 @@ namespace StaffApi.Controllers
             return Ok(db.Update(empCode, staff.Name, staff.Email, staff.Extra));
         }
 
-        // DELETE api/<StaffController>/5
         [HttpDelete("{empcode}")]
         public ActionResult Delete(int empCode)
         {

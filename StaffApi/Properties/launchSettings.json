@@ -20,7 +20,7 @@
     "StaffApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "Staff",
+      "launchUrl": "api/staff",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
