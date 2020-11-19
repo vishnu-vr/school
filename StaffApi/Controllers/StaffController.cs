@@ -121,7 +121,11 @@ namespace StaffApi.Controllers
         public ActionResult Put(int empCode, [FromBody] JObject staff)
         {
             dynamic st = db.GetOne(empCode);
-            if (st == null) return NotFound();
+
+            if (st == null)
+            {
+                return NotFound();
+            }
 
             string extra = null;
 
