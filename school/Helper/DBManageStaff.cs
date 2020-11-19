@@ -215,9 +215,20 @@ namespace school
             foreach (dynamic staff in staffs)
             {
                 string extra = null;
-                if (staff.Type == StaffType.teacher) extra = staff.Subject;
-                else if (staff.Type == StaffType.support) extra = staff.Department;
-                else if (staff.Type == StaffType.administrator) extra = staff.Role;
+                
+                if (staff.Type == StaffType.teacher) 
+                {
+                	extra = staff.Subject;
+                }
+                else if (staff.Type == StaffType.support)
+                {
+                	 extra = staff.Department;
+                }
+                else if (staff.Type == StaffType.administrator) 
+                {
+                	extra = staff.Role;
+                }
+
                 dt.Rows.Add(staff.EmpCode, staff.Name, staff.Email, staff.Type, extra);
             }
            

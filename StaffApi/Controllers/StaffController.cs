@@ -37,7 +37,7 @@ namespace StaffApi.Controllers
             }
             else if (type == null)
             {
-                return Ok(db.GetAll());
+                return Ok(staffs);
             }
             else
             {
