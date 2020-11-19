@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using school;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using school;
-using StaffApi.Models;
-using Newtonsoft.Json.Linq;
-using System;
 
 namespace StaffApi.Controllers
 {
@@ -16,7 +15,7 @@ namespace StaffApi.Controllers
 
         public StaffController()
         {
-             db = new DBManageStaff();
+            db = new DBManageStaff();
         }
 
         [HttpGet()]
@@ -34,7 +33,7 @@ namespace StaffApi.Controllers
         [HttpGet("{empcode:int}")]
         public ActionResult Get(int empCode)
         {
-            dynamic staff = db.GetOne(empCode); 
+            dynamic staff = db.GetOne(empCode);
             if (staff == null) return NotFound();
             else return Ok(staff);
         }
@@ -46,7 +45,7 @@ namespace StaffApi.Controllers
 
             //if such staff exsists then its duplicate entry
             if (st != null) return Conflict();
-            
+
             dynamic returnObject;
             string extra;
 
@@ -73,7 +72,7 @@ namespace StaffApi.Controllers
             db.AddStaff((StaffType)Enum.ToObject(typeof(StaffType), (int)staff["type"]), (string)staff["name"], (string)staff["email"], (int)staff["empcode"], extra);
 
             return Created("Staff Added", returnObject);
-        }   
+        }
 
         [HttpPut("{empcode:int}")]
         public ActionResult Put(int empCode, [FromBody] JObject staff)
