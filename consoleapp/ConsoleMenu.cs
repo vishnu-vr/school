@@ -208,13 +208,29 @@ namespace consoleapp
                 Console.WriteLine("Enter new email : ");
                 string newEmail = Console.ReadLine();
 
-                if (staff.Type == school.StaffType.teacher) Console.WriteLine("Enter new subject : ");
-                else if (staff.Type == school.StaffType.support) Console.WriteLine("Enter new deparment : ");
-                else if (staff.Type == school.StaffType.administrator) Console.WriteLine("Enter new role : ");
+                if (staff.Type == school.StaffType.teacher)
+                {
+                    Console.WriteLine("Enter new subject : ");
+                }
+                else if (staff.Type == school.StaffType.support)
+                {
+                    Console.WriteLine("Enter new deparment : ");
+                }
+                else if (staff.Type == school.StaffType.administrator)
+                {
+                    Console.WriteLine("Enter new role : ");
+                }
+
                 string extra = Console.ReadLine();
 
-                if (manager.Update(empCode, newName, newEmail, extra)) Console.WriteLine("Updated Successfully");
-                else Console.WriteLine("Failed");
+                if (manager.Update(empCode, newName, newEmail, extra))
+                {
+                    Console.WriteLine("Updated Successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                }
             }
             catch (Exception)
             {
@@ -226,8 +242,14 @@ namespace consoleapp
         {
             Console.WriteLine("Enter Emp Code : ");
             int empCode = int.Parse(Console.ReadLine());
-            if (manager.Delete(empCode)) Console.WriteLine("Successfully Deleted");
-            else Console.WriteLine("Failed");
+            if (manager.Delete(empCode))
+            {
+                Console.WriteLine("Successfully Deleted");
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
         }
 
         public static void PrintDetails(dynamic staff)

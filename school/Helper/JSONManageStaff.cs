@@ -19,13 +19,22 @@ namespace school
             var staffs = (List<dynamic>)this.storageManager.Deserialize();
 
             //teacher
-            if (type == StaffType.teacher) staffs.Add(new Teacher(name, email, empCode, extra));
+            if (type == StaffType.teacher)
+            {
+                staffs.Add(new Teacher(name, email, empCode, extra));
+            }
 
             //admin
-            else if (type == StaffType.administrator) staffs.Add(new Administrator(name, email, empCode, extra));
+            else if (type == StaffType.administrator)
+            {
+                staffs.Add(new Administrator(name, email, empCode, extra));
+            }
 
             //support
-            else if (type == StaffType.support) staffs.Add(new Support(name, email, empCode, extra));
+            else if (type == StaffType.support)
+            {
+                staffs.Add(new Support(name, email, empCode, extra));
+            }
 
             //saving it back to json
             this.storageManager.Serialize(staffs);
@@ -68,9 +77,18 @@ namespace school
 
                 staff.Name = name;
                 staff.Email = email;
-                if (staff.Type == StaffType.teacher) staff.Subject = extra;
-                else if (staff.Type == StaffType.administrator) staff.Role = extra;
-                if (staff.Type == StaffType.support) staff.Department = extra;
+                if (staff.Type == StaffType.teacher)
+                {
+                    staff.Subject = extra;
+                }
+                else if (staff.Type == StaffType.administrator)
+                {
+                    staff.Role = extra;
+                }
+                else if (staff.Type == StaffType.support)
+                {
+                    staff.Department = extra;
+                }
 
                 this.storageManager.Serialize(staffs);
 

@@ -23,7 +23,10 @@ namespace school
 
         public dynamic Deserialize()
         {
-            if (!File.Exists(this.jsonFilePath)) return new List<dynamic>();
+            if (!File.Exists(this.jsonFilePath))
+            {
+                return new List<dynamic>();
+            }
 
             StreamReader streamReader = new StreamReader(this.jsonFilePath);
 
@@ -37,15 +40,24 @@ namespace school
             {
                 if (obj.Type == 0)
                 {
-                    staffs.Add(new Teacher(obj.Name.ToString(), obj.Email.ToString(), int.Parse(obj.EmpCode.ToString()), obj.Subject.ToString()));
+                    staffs.Add(new Teacher(obj.Name.ToString(), 
+                                            obj.Email.ToString(), 
+                                            int.Parse(obj.EmpCode.ToString()), 
+                                            obj.Subject.ToString()));
                 }
                 else if (obj.Type == 1)
                 {
-                    staffs.Add(new Support(obj.Name.ToString(), obj.Email.ToString(), int.Parse(obj.EmpCode.ToString()), obj.Department.ToString()));
+                    staffs.Add(new Support(obj.Name.ToString(), 
+                                            obj.Email.ToString(), 
+                                            int.Parse(obj.EmpCode.ToString()), 
+                                            obj.Department.ToString()));
                 }
                 else if (obj.Type == 2)
                 {
-                    staffs.Add(new Administrator(obj.Name.ToString(), obj.Email.ToString(), int.Parse(obj.EmpCode.ToString()), obj.Role.ToString()));
+                    staffs.Add(new Administrator(obj.Name.ToString(), 
+                                                obj.Email.ToString(), 
+                                                int.Parse(obj.EmpCode.ToString()), 
+                                                obj.Role.ToString()));
                 }
             }
 
@@ -54,7 +66,10 @@ namespace school
 
         public void Serialize(List<dynamic> staffs)
         {
-            if (File.Exists(this.jsonFilePath)) File.Delete(this.jsonFilePath);
+            if (File.Exists(this.jsonFilePath))
+            {
+                File.Delete(this.jsonFilePath);
+            }
 
             StreamWriter sw = new StreamWriter(this.jsonFilePath);
 

@@ -25,7 +25,10 @@ namespace school
 
         public dynamic Deserialize()
         {
-            if (!File.Exists(this.xmlFilePath)) return new List<dynamic>();
+            if (!File.Exists(this.xmlFilePath))
+            {
+                return new List<dynamic>();
+            }
 
             XmlSerializer xs = new XmlSerializer(typeof(List<dynamic>), this.types);
 
@@ -38,7 +41,10 @@ namespace school
 
         public void Serialize(List<dynamic> staffs)
         {
-            if (File.Exists(this.xmlFilePath)) File.Delete(this.xmlFilePath);
+            if (File.Exists(this.xmlFilePath))
+            {
+                File.Delete(this.xmlFilePath);
+            }
 
             XmlSerializer xs = new XmlSerializer(typeof(List<dynamic>), this.types);
 

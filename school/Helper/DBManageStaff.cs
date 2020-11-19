@@ -180,15 +180,24 @@ namespace school
 
             if (int.Parse(dr["Type"].ToString()) == 1)
             {
-                staff = new Teacher(dr["Name"].ToString(), dr["Email"].ToString(), int.Parse(dr["EmpCode"].ToString()), dr["Subject"].ToString());
+                staff = new Teacher(dr["Name"].ToString(), 
+                                    dr["Email"].ToString(), 
+                                    int.Parse(dr["EmpCode"].ToString()), 
+                                    dr["Subject"].ToString());
             }
             else if (int.Parse(dr["Type"].ToString()) == 2)
             {
-                staff = new Support(dr["Name"].ToString(), dr["Email"].ToString(), int.Parse(dr["EmpCode"].ToString()), dr["Department"].ToString());
+                staff = new Support(dr["Name"].ToString(), 
+                                    dr["Email"].ToString(), 
+                                    int.Parse(dr["EmpCode"].ToString()), 
+                                    dr["Department"].ToString());
             }
             else if (int.Parse(dr["Type"].ToString()) == 3)
             {
-                staff = new Administrator(dr["Name"].ToString(), dr["Email"].ToString(), int.Parse(dr["EmpCode"].ToString()), dr["Role"].ToString());
+                staff = new Administrator(dr["Name"].ToString(), 
+                                        dr["Email"].ToString(), 
+                                        int.Parse(dr["EmpCode"].ToString()), 
+                                        dr["Role"].ToString());
             }
 
             return staff;
