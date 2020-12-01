@@ -1,0 +1,19 @@
+<div class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" (click)="hideModalPopup()">&times;</span>
+        <div style="text-align: center;">
+            <label for="empcode">Emp Code:</label><br>
+            <input [disabled]="lockEmpCodeInput" [(ngModel)]="newStaff['empcode']" name="empcode" type="number" placeholder="Emp Code"><br>
+            <label for="name">Name:</label><br>
+            <input [(ngModel)]="newStaff['name']" name="name" type="text" placeholder="Name"><br>
+            <label for="email">Email:</label><br>
+            <input [(ngModel)]="newStaff['email']" name="email" type="text" placeholder="Email"><br>
+            <label name="extra_label" for="extra">{{inpExtraField}}:</label><br>
+            <input [(ngModel)]="newStaff[extraField]" name="extra" type="text" placeholder="Extra"><br>
+    
+            <button *ngIf="lockEmpCodeInput == false" id="add_button" (click)="add()" type="button">Add</button>
+            <button *ngIf="lockEmpCodeInput" id="update_button" (click)="update()" type="button">Update</button>
+        </div>
+    </div>
+</div>

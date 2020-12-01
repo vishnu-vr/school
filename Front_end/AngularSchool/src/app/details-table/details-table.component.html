@@ -1,0 +1,50 @@
+<div>
+    <label for="staff_type">Staff Type :</label>
+    <select (change)="selectStaff($event.target.value)">
+      <option value="None" selected="true">None</option>
+      <option value="teacher">Teacher</option>
+      <option value="support">Support</option>
+      <option value="administrator">Administrator</option>
+    </select>
+</div>
+
+<div *ngIf="staffData">
+    <button type="button" (click)="addStaff()">Add Staff</button>
+    <button type="button" (click)="delete()">Delete</button>
+
+    <table>
+        <caption class="caption">{{ StaffType | uppercase }}</caption>
+        <tr>
+            <th><input type="checkbox" (click)="checkAll($event.target.checked)"></th>
+            <th>Emp Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>{{extra}}</th>
+        </tr>
+        <tr *ngFor="let staff of staffData">
+            <td><input type="checkbox" (click)="staffChecked(staff,$event.target.checked)" [checked] = "allChecked"></td>
+            <td (click)="update(staff)">{{staff["empCode"]}}</td>
+            <td (click)="update(staff)">{{staff["name"]}}</td>
+            <td (click)="update(staff)">{{staff["email"]}}</td>
+            <td (click)="update(staff)">{{staff[extra | lowercase]}}</td>
+        </tr>
+    </table>
+</div>
+
+
+<app-form-popup *ngIf="showModalPopup" 
+[hideModalPopup]="hideModalPopup" 
+[staff]="addOrUpdateStaff" 
+[inpExtraField]="extra | lowercase"
+[showToast]="showToast">
+</app-form-popup>
+
+<app-confirm-popup *ngIf="showConfirmBox" 
+[hideConfirmBox]="hideConfirmBox" 
+[message]="message">
+</app-confirm-popup>
+
+<app-toast *ngIf="showToastMessage" 
+[message]="toastMessage" 
+[success]="success">
+</app-toast>

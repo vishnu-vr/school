@@ -1,0 +1,11 @@
+<div id="confirm_modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+    <span class="close" (click)="hideConfirmBox(false)">&times;</span>
+        <div id='confirm' style="text-align: center;">
+            <h2 id='confirm_message'>{{message}}</h2>
+            <button type="button" (click)="hideConfirmBox(true)" id="confirm_true_callback">Yes</button>
+            <button type="button" (click)="hideConfirmBox(false)" id="confirm_false_callback">No</button>
+        </div>
+    </div>
+</div>
