@@ -1,7 +1,7 @@
 <div class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-    <span class="close" (click)="hideModalPopup()">&times;</span>
+    <span class="close" (click)="closeAndGoBack()">&times;</span>
         <div style="text-align: center;">
             <label for="empcode">Emp Code:</label><br>
             <input [disabled]="lockEmpCodeInput" [(ngModel)]="newStaff['empcode']" name="empcode" type="number" placeholder="Emp Code"><br>
@@ -17,3 +17,8 @@
         </div>
     </div>
 </div>
+
+<app-toast *ngIf="showToastMessage" 
+[message]="toastMessage" 
+[success]="success">
+</app-toast>

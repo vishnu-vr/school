@@ -8,7 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormPopupComponent } from './form-popup/form-popup.component';
 import { FormsModule } from '@angular/forms';
 import { ConfirmPopupComponent } from './confirm-popup/confirm-popup.component';
-import { ToastComponent } from './toast/toast.component'; // <-- NgModel lives here
+import { ToastComponent } from './toast/toast.component';
+import { AppRoutingModule } from './app-routing.module'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ToastComponent } from './toast/toast.component'; // <-- NgModel lives h
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

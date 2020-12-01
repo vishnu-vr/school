@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StaffService } from '../staff.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+// import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-details-table',
@@ -16,7 +20,7 @@ export class DetailsTableComponent implements OnInit {
 
   // form modal properties
   addOrUpdateStaff:object;
-  showModalPopup: boolean = false;
+  // showModalPopup: boolean = false;
 
   // confirmation box properties
   message:string = "message not set from details table component";
@@ -27,9 +31,16 @@ export class DetailsTableComponent implements OnInit {
   showToastMessage: boolean = false;
   success:boolean;
 
-  constructor(private staffService: StaffService) { }
+  constructor(
+    private staffService: StaffService,
+    private router: Router,
+    private route: ActivatedRoute,
+    // private location: Location
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.selectStaff(this.route.snapshot.paramMap.get('staffType'));
+   }
 
   getStaffData(staffType:string):void{
     if (staffType == "teacher") {
@@ -132,18 +143,26 @@ export class DetailsTableComponent implements OnInit {
       "email":""
     }
     this.addOrUpdateStaff[this.extra.toLowerCase()] = ""
-    this.showModalPopup = true
+    // this.showModalPopup = true
+    this.routeTo('/form_popup');
   }
 
   update(staff:object):void{
     this.addOrUpdateStaff = staff
-    this.showModalPopup = true
+    // this.showModalPopup = true
+    this.routeTo('/form_popup');
   }
 
-  hideModalPopup = (refresh:boolean = false): void => {
-    // hiding the modal
-    this.showModalPopup = false
-    // refreshing data
-    if (refresh) this.getStaffData(this.StaffType);
+  routeTo(page:string):void{
+    this.router.navigate(
+      [page,JSON.stringify(this.addOrUpdateStaff),this.extra.toLowerCase(),this.StaffType]
+    );
   }
+
+  // hideModalPopup = (refresh:boolean = false): void => {
+  //   // hiding the modal
+  //   this.showModalPopup = false
+  //   // refreshing data
+  //   if (refresh) this.getStaffData(this.StaffType);
+  // }
 }
